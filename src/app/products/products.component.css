@@ -1,0 +1,28 @@
+.login-msg {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(255, 255, 255);
+  padding: 0 10px;
+}
+
+.info {
+  position: fixed;
+  right: 0;
+  top: 0%;
+  animation: djole 5s ease-in;
+  background-color: rgb(55, 113, 139);
+  padding: 10px;
+  color: white;
+  opacity: 0;
+}
+
+@keyframes djole {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

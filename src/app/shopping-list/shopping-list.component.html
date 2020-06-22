@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="input-group my-3 py-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm"
+          >Ingredient</span
+        >
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+        #name
+      />
+      <input class="form-control" type="number" placeholder="amount" #amount />
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button (click)="addIngredient()" type="button" class="btn btn-primary">
+        Add
+      </button>
+      <button (click)="clearInputFields()" class="btn btn-danger">
+        Clear Input Fields
+      </button>
+    </div>
+    <div *ngIf="ingredients.length <= 0; else the">
+      Please add some ingredient
+    </div>
+    <ng-template #the>
+      <div class="py-3 text-success">
+        Thanks :)
+      </div>
+    </ng-template>
+    <a routerLink="/" class="goToHomePage"
+      ><i class="fa fa-angle-left"></i> Go to Homepage</a
+    >
+  </div>
+
+  <div class="col-md-7 my-3">
+    Ingredient List:
+    <ul class="list-group my-3">
+      <li
+        *ngFor="let ingredient of ingredients; let i = index"
+        class="list-group-item"
+      >
+        {{ ingredient.name }} ({{ ingredient.amount }})
+
+        <button (click)="clearIng(i)" type="button" class="btn btn-danger my-3">
+          x
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

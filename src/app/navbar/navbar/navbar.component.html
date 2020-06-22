@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">McBurger</a>
+  <div id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          routerLink="/burgers"
+          routerLinkActive="active"
+          class="nav-link active"
+          style="cursor: pointer;"
+          >Burgers</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="auth"
+          routerLink="/ingredients"
+          routerLinkActive="active"
+          class="nav-link"
+          style="cursor: pointer;"
+          >Ingredient List</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/about"
+          routerLinkActive="active"
+          class="nav-link"
+          style="cursor: pointer;"
+          >About</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="!auth"
+          class="nav-link"
+          (click)="login()"
+          style="cursor: pointer; color: rgb(240, 240, 240);"
+          [ngStyle]="{ backgroundColor: !auth ? '#a2c159' : 'transparent' }"
+          >Login</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="auth"
+          class="nav-link"
+          (click)="logout()"
+          style="cursor: pointer; color: white;"
+          [ngStyle]="{ backgroundColor: auth ? '#a25660' : 'transparent' }"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

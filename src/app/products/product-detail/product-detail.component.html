@@ -1,0 +1,30 @@
+<div class="card mb-3" style="width: 300px;">
+  <img
+    [src]="product.imgFile"
+    class="card-img-top"
+    style="width: 100%;"
+    [alt]="product.name"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">
+      {{ product.description }}
+    </p>
+  </div>
+  <p class="my-0">Free Ingredients:</p>
+  <div *ngFor="let productIng of product.ingredient">
+    {{ productIng.name }} - {{ productIng.amount }}
+  </div>
+  <a
+    (click)="addToShoppingList()"
+    class="bg-dark text-light text-center py-3"
+    style="cursor: pointer;"
+    >Add To Cart</a
+  >
+  <a
+    (click)="goToEdit()"
+    class="bg-success text-light text-center py-3"
+    style="cursor: pointer;"
+    >Edit Burger</a
+  >
+</div>

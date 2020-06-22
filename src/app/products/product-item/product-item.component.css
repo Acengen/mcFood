@@ -1,0 +1,9 @@
+a {
+  color: black;
+}
+a:hover {
+  text-decoration: none !important;
+}
+.acti {
+  border-color: #a2c159;
+}

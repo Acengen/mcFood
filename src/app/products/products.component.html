@@ -1,0 +1,23 @@
+<p class="py-3 text-center">ORDER YOUR FAVORIT MEAL</p>
+<div class="row">
+  <div
+    *ngIf="loginMsg !== ''"
+    [ngStyle]="{ backgroundColor: auth ? '#a2c159' : '#a25660' }"
+    class="login-msg"
+  >
+    {{ loginMsg }}
+  </div>
+  <div class="info" *ngIf="!auth">
+    You need to click on 'Login' to see your cart and ingredients
+  </div>
+  <div class="col-md-5">
+    <app-product-item
+      *ngFor="let productEl of products; let i = index"
+      [product]="productEl"
+      [index]="i"
+    ></app-product-item>
+  </div>
+  <div class="col-md-7">
+    <router-outlet></router-outlet>
+  </div>
+</div>
