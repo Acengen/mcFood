@@ -18,10 +18,15 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private fakeAuth: FakeAuth
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
+    this.productService.productChanged.subscribe(
+      (product: Product[]) => {
+        this.products = product
+      }
+    )
     this.auth = this.fakeAuth.auth;
     this.fakeAuth.authEmitter.subscribe((auth: boolean) => {
       this.auth = auth;

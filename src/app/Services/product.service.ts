@@ -6,6 +6,7 @@ import { ShoppingService } from './shopping.service';
 @Injectable()
 export class ProductService {
   productSelected = new EventEmitter<Product>();
+  productChanged = new EventEmitter<Product[]>();
   private products: Product[] = [
     new Product(
       'Hamburger',
@@ -36,7 +37,7 @@ export class ProductService {
       3
     ),
   ];
-  constructor(private shoppingService: ShoppingService) {}
+  constructor(private shoppingService: ShoppingService) { }
 
   getProducts() {
     return this.products.slice();
@@ -51,5 +52,10 @@ export class ProductService {
 
   passIngredientToShoppingList(Ingredient: Ingredient[]) {
     this.shoppingService.addIngredientToSL(Ingredient);
+  }
+
+  updateProduct(index: number, newProduct: Product) {
+    this.products[index] = newProduct;
+    this.productChanged.emit(this.products.slice())
   }
 }

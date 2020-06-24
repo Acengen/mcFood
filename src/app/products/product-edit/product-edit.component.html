@@ -1,0 +1,43 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <button class="btn btn-success" type="submit" [disabled]="!productForm.valid">Save</button>
+  <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Name:</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" formControlName="name" />
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Image URL:</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="img url"
+      formControlName="imgPath" />
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description:</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Price:</label>
+    <input class="form-control" type="number" id="exampleFormControlTextarea1" rows="3" formControlName="price">
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <img src="" class="img-responsive" />
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Ingredient List:</p>
+    <div class="col-xs-12" formArrayName="ingredients">
+      <div *ngFor="let ingredientCtrl of constrols; let i = index" [formGroupName]="i">
+        <div class="col-xs-8">
+          <input type="text" class="form-control" formControlName="name" placeholder="name" />
+        </div>
+        <div class="col-xs-2">
+          <input type="number" class="form-control" formControlName="amount" placeholder="amount" />
+        </div>
+        <div class="col-xs-2">
+          <button type="button" class="btn btn-danger" (click)="onClear(i)">Clear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-success" type="button" (click)="addNewIngredient()">Add New Ingredient</button>
+</form>

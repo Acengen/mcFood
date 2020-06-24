@@ -1,54 +1,40 @@
 <div class="row">
-  <div class="col-md-5">
-    <div class="input-group my-3 py-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm"
-          >Ingredient</span
-        >
+  <div class="col-md-9">
+    <form (ngSubmit)="addIngredient(f)" #f="ngForm">
+      <div class="input-group my-3 py-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Ingredient</span>
+        </div>
+        <input type="text" name="username" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-sm" ngModel required />
+
+        <input class="form-control" type="number" name="amount" placeholder="amount" ngModel required
+          pattern="^[1-9]+[0-9]*$" />
       </div>
-      <input
-        type="text"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-sm"
-        #name
-      />
-      <input class="form-control" type="number" placeholder="amount" #amount />
-    </div>
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button (click)="addIngredient()" type="button" class="btn btn-primary">
-        Add
-      </button>
-      <button (click)="clearInputFields()" class="btn btn-danger">
-        Clear Input Fields
-      </button>
-    </div>
-    <div *ngIf="ingredients.length <= 0; else the">
-      Please add some ingredient
-    </div>
-    <ng-template #the>
-      <div class="py-3 text-success">
-        Thanks :)
+      <p *ngIf="!f.valid && f.touched">Please Fill input fields</p>
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+          {{ editMode ? "Update" : "Add" }}
+        </button>
+        <button class="btn btn-danger" (click)="onClear()">Clear</button>
+        <button class="btn btn-warning" (click)="onDelete()" *ngIf="editMode">
+          Remove Ingredient
+        </button>
       </div>
-    </ng-template>
-    <a routerLink="/" class="goToHomePage"
-      ><i class="fa fa-angle-left"></i> Go to Homepage</a
-    >
+    </form>
+
+    <a routerLink="/" class="goToHomePage"><i class="fa fa-angle-left"></i> Go to Homepage</a>
   </div>
 
   <div class="col-md-7 my-3">
     Ingredient List:
     <ul class="list-group my-3">
-      <li
-        *ngFor="let ingredient of ingredients; let i = index"
-        class="list-group-item"
-      >
-        {{ ingredient.name }} ({{ ingredient.amount }})
-
-        <button (click)="clearIng(i)" type="button" class="btn btn-danger my-3">
-          x
-        </button>
-      </li>
+      <a style="cursor: pointer;" *ngFor="let ingredient of ingredients; let i = index" (click)="addEdit(i)">
+        <li class="list-group-item">
+          {{ ingredient.name }} ({{ ingredient.amount }})
+        </li>
+      </a>
     </ul>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
@@ -16,6 +17,7 @@ import { CanDeactivateGuard } from './shopping-list/canDeactivateGuard/canDeacti
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { AboutComponent } from './about/about.component';
 import { StartComponentComponent } from './products/start-component/start-component.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -29,6 +31,7 @@ const appRoutes: Routes = [
       { path: '', component: StartComponentComponent },
 
       { path: ':id', component: ProductDetailComponent },
+      { path: ':id/edit', component: ProductEditComponent },
     ],
   },
   {
@@ -56,8 +59,14 @@ const appRoutes: Routes = [
     ErrorMessageComponent,
     AboutComponent,
     StartComponentComponent,
+    ProductEditComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     ProductService,
     ShoppingService,
