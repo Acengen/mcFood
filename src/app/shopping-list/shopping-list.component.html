@@ -6,9 +6,9 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Ingredient</span>
         </div>
         <input type="text" name="username" class="form-control" aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-sm" ngModel required />
+          aria-describedby="inputGroup-sizing-sm" #username ngModel required />
 
-        <input class="form-control" type="number" name="amount" placeholder="amount" ngModel required
+        <input class="form-control" type="number" name="amount" placeholder="amount" #amount ngModel required
           pattern="^[1-9]+[0-9]*$" />
       </div>
       <p *ngIf="!f.valid && f.touched">Please Fill input fields</p>

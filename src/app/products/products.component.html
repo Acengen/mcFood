@@ -1,23 +1,29 @@
 <p class="py-3 text-center">ORDER YOUR FAVORIT MEAL</p>
-<div class="row">
-  <div
-    *ngIf="loginMsg !== ''"
-    [ngStyle]="{ backgroundColor: auth ? '#a2c159' : '#a25660' }"
-    class="login-msg"
-  >
+<div class="row justify-content-around">
+  <div *ngIf="loginMsg !== ''" [ngStyle]="{ backgroundColor: auth ? '#a2c159' : '#a25660' }" class="login-msg">
     {{ loginMsg }}
   </div>
-  <div class="info" *ngIf="!auth">
-    You need to click on 'Login' to see your cart and ingredients
+  <div class="">
+    <app-product-item *ngFor="let productEl of products; let i = index" [product]="productEl" [index]="i">
+    </app-product-item>
   </div>
-  <div class="col-md-5">
-    <app-product-item
-      *ngFor="let productEl of products; let i = index"
-      [product]="productEl"
-      [index]="i"
-    ></app-product-item>
-  </div>
-  <div class="col-md-7">
+  <div class="">
     <router-outlet></router-outlet>
+  </div>
+  <div class="">
+    <div class="card" style="width: 18rem;" *ngIf="auth;else authTrue">
+      <div class="card-header">
+        Burgers Cart <i class="fa fa-shopping-cart"></i>
+      </div>
+      <ul class="list-group list-group-flush">
+        <app-bought-products *ngFor="let buyProd of buyProduct; let i = index" [boughtProducts]="buyProd" [index]="i">
+        </app-bought-products>
+      </ul>
+    </div>
+    <ng-template #authTrue>
+      Please click <a (click)="login()" class="bg-success text-light"
+        style="cursor: pointer;font-weight: bold; padding: 5px;">Login</a>
+      to see your shopping-cart </ng-template>
+    <div *ngIf="auth" style="color: crimson;text-align: right;">Total: {{totalPrice}}$</div>
   </div>
 </div>

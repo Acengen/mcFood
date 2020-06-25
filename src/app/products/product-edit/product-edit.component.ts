@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/Services/product.service';
 import { Product } from 'src/app/Models/product.model';
-import { Ingredient } from 'src/app/Models/shopping.model';
 
 @Component({
   selector: 'app-product-edit',
@@ -57,6 +56,8 @@ export class ProductEditComponent implements OnInit {
   onClear(index: number) {
     (<FormArray>this.productForm.get('ingredients')).removeAt(index)
   }
+
+
 
   formCreation() {
     let productName = '';

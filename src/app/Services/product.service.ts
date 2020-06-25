@@ -7,6 +7,12 @@ import { ShoppingService } from './shopping.service';
 export class ProductService {
   productSelected = new EventEmitter<Product>();
   productChanged = new EventEmitter<Product[]>();
+  productToBuyEmitter = new EventEmitter<Product[]>();
+  productTotalPriceEmitter = new EventEmitter<number>();
+
+  total = 0;
+
+  private buyProduct: Product[] = [];
   private products: Product[] = [
     new Product(
       'Hamburger',
@@ -46,8 +52,20 @@ export class ProductService {
     return this.products[index];
   }
 
+  getBuyProduc() {
+    return this.buyProduct.slice()
+  }
+
+  buyProductOnClick(newProduct: Product) {
+    this.buyProduct.push(newProduct);
+    this.total += newProduct.price;
+    this.productTotalPriceEmitter.emit(this.total)
+    this.productToBuyEmitter.emit(this.buyProduct);
+  }
+
   onProductSelected(product: Product) {
     this.productSelected.emit(product);
+
   }
 
   passIngredientToShoppingList(Ingredient: Ingredient[]) {
@@ -58,4 +76,12 @@ export class ProductService {
     this.products[index] = newProduct;
     this.productChanged.emit(this.products.slice())
   }
+
+  deletingBurger(index: number, delProduct: Product) {
+    this.buyProduct.splice(index, 1);
+    this.total -= delProduct.price;
+    this.productTotalPriceEmitter.emit(this.total);
+    this.productToBuyEmitter.emit(this.buyProduct)
+  }
+
 }

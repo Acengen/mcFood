@@ -18,8 +18,10 @@ export class ShoppingListComponent implements OnInit, CanDeactivateGuard {
   indexEdited: number;
   editedIngredient: Ingredient;
   editMode = false;
+  @ViewChild('username') userInput: ElementRef;
+  @ViewChild('amount') amountInput: ElementRef;
   @ViewChild('f') addForm: NgForm;
-  constructor(private shoppingService: ShoppingService) {}
+  constructor(private shoppingService: ShoppingService) { }
 
   ngOnInit() {
     this.ingredients = this.shoppingService.getIngredient();
@@ -48,10 +50,10 @@ export class ShoppingListComponent implements OnInit, CanDeactivateGuard {
     } else {
       this.shoppingService.addIng(newIng);
     }
-
     this.saved = true;
     this.editMode = false;
     this.addForm.reset();
+    console.log(this.addForm)
   }
 
   addEdit(index: number) {
@@ -66,7 +68,7 @@ export class ShoppingListComponent implements OnInit, CanDeactivateGuard {
     this.onClear();
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.addForm.value.name === '' && !this.saved) {
+    if (this.userInput.nativeElement.value === '' || this.amountInput.nativeElement.value === '' && !this.saved) {
       return confirm('Are you sure?');
     } else {
       return true;

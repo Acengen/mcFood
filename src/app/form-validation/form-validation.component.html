@@ -1,0 +1,22 @@
+<form class="my-3" style="width: 400px;margin: auto;" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" class="form-control" formControlName="name" />
+        <p style="font-weight: bold;" *ngIf="!signinForm.get('name').valid && signinForm.get('name').touched">You need
+            valid name</p>
+
+    </div>
+    <div class="form-group">
+        <label for="name">Your Email:</label>
+        <input type="email" class="form-control" formControlName="email" />
+        <p style="font-weight: bold;" *ngIf="!signinForm.get('email').valid && signinForm.get('email').touched">You need
+            valid email</p>
+    </div>
+    <div class="form-group">
+        <select class="form-control" formControlName="select">
+            <option value="fastes">Fastes</option>
+            <option value="cheapest">Cheapest</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-dark">Order</button>
+</form>

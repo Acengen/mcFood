@@ -18,12 +18,16 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 import { AboutComponent } from './about/about.component';
 import { StartComponentComponent } from './products/start-component/start-component.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { BoughtProductsComponent } from './products/bought-products/bought-products.component';
+import { FormValidationComponent } from './form-validation/form-validation.component';
+import { HomeComponentComponent } from './home-component/home-component.component';
 const appRoutes: Routes = [
   {
     path: '',
     redirectTo: '/burgers',
     pathMatch: 'full',
   },
+  { path: '', component: HomeComponentComponent },
   {
     path: 'burgers',
     component: ProductsComponent,
@@ -41,6 +45,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'about', component: AboutComponent },
+  { path: 'validate', component: FormValidationComponent },
   {
     path: 'page-not-found',
     component: ErrorMessageComponent,
@@ -60,6 +65,9 @@ const appRoutes: Routes = [
     AboutComponent,
     StartComponentComponent,
     ProductEditComponent,
+    BoughtProductsComponent,
+    FormValidationComponent,
+    HomeComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,4 +84,4 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
