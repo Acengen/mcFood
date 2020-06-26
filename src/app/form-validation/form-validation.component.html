@@ -13,10 +13,41 @@
             valid email</p>
     </div>
     <div class="form-group">
+        <label>Order Type:</label>
         <select class="form-control" formControlName="select">
-            <option value="fastes">Fastes</option>
+            <option value="fastes">Fastest</option>
             <option value="cheapest">Cheapest</option>
         </select>
     </div>
     <button type="submit" class="btn btn-dark">Order</button>
 </form>
+<hr>
+<div *ngIf="submitMode">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Order type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.select}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="card" style="width: 18rem;margin: auto;">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let product of boughtProducts;let i = index" class="list-group-item">
+                {{product.name}} - {{product.price}}$
+                <a (click)="deleteProduct(i)"
+                    style="padding: 5px;background-color: crimson;color: white;float: right;cursor: pointer;">x</a>
+            </li>
+        </ul>
+    </div>
+</div>

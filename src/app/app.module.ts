@@ -68,6 +68,7 @@ const appRoutes: Routes = [
     BoughtProductsComponent,
     FormValidationComponent,
     HomeComponentComponent,
+
   ],
   imports: [
     BrowserModule,

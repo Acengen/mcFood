@@ -24,6 +24,7 @@
       Please click <a (click)="login()" class="bg-success text-light"
         style="cursor: pointer;font-weight: bold; padding: 5px;">Login</a>
       to see your shopping-cart </ng-template>
-    <div *ngIf="auth" style="color: crimson;text-align: right;">Total: {{totalPrice}}$</div>
+    <a routerLink="/validate">Go to Order Form</a>
+    <div *ngIf="auth" style="color: crimson;text-align: right;float: right;">Total: {{totalPrice}}$</div>
   </div>
 </div>

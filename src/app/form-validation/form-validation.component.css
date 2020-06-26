@@ -4,3 +4,7 @@ input.ng-invalid.ng-touched {
 input.ng-valid {
     border: 1px solid seagreen;
 }
+
+input.ng-pending {
+    
+}

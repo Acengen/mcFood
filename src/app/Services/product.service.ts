@@ -84,4 +84,9 @@ export class ProductService {
     this.productToBuyEmitter.emit(this.buyProduct)
   }
 
+  deleteProductFromOrderForm(index: number) {
+    this.buyProduct.splice(index, 1);
+    this.productToBuyEmitter.emit(this.buyProduct);
+  }
+
 }
