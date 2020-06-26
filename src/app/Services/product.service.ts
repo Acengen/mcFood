@@ -10,6 +10,7 @@ export class ProductService {
   productToBuyEmitter = new EventEmitter<Product[]>();
   productTotalPriceEmitter = new EventEmitter<number>();
 
+
   total = 0;
 
   private buyProduct: Product[] = [];

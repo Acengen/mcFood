@@ -14,7 +14,9 @@
         <a routerLink="/about" routerLinkActive="active" class="nav-link" style="cursor: pointer;">About</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/validate" routerLinkActive="active" class="nav-link" style="cursor: pointer;">Order Form</a>
+        <a routerLink="/validate" routerLinkActive="active" class="nav-link" [ngClass]="{'disabled': !auth}"
+          style="cursor: pointer;">Order
+          Form</a>
       </li>
       <li class="nav-item">
         <a *ngIf="!auth" class="nav-link" (click)="login()" style="cursor: pointer; color: rgb(240, 240, 240);"

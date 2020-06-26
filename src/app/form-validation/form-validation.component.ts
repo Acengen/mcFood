@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { rejects } from 'assert';
 import { ProductService } from '../Services/product.service';
 import { Product } from '../Models/product.model';
+import { FakeAuth } from '../Auth/FakeAuth.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-form-validation',
@@ -19,9 +21,13 @@ export class FormValidationComponent implements OnInit {
     email: '',
     select: ''
   }
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private fakeAuth: FakeAuth, private router: Router, private routeActive: ActivatedRoute) { }
 
   ngOnInit() {
+    if (!this.fakeAuth.auth) {
+      this.router.navigate(['/burgers'])
+    }
+
     this.boughtProducts = this.productService.getBuyProduc();
     this.productService.productToBuyEmitter.subscribe(
       (buyProduct: Product[]) => {
