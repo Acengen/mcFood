@@ -36,7 +36,7 @@ export class FormValidationComponent implements OnInit {
     )
     this.signinForm = new FormGroup({
       "name": new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z]/)]),
-      "email": new FormControl(null, [Validators.required, Validators.email, Validators.pattern(/[0-9]/)]),
+      "email": new FormControl(null, [Validators.required, Validators.email]),
       "select": new FormControl('fastest', Validators.required)
     })
   }

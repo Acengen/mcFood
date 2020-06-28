@@ -1,4 +1,5 @@
-<p class="py-3 text-center">ORDER YOUR FAVORIT MEAL</p>
+<p class="py-3 text-center" style="font-weight: bold;" [ngClass]="helperClass(auth)">ORDER YOUR FAVORIT MEAL
+  {{!auth ? 'BUT 1ST CLICK ON LOGIN' : ''}}</p>
 <div class="row justify-content-around">
   <div *ngIf="loginMsg !== ''" [ngStyle]="{ backgroundColor: auth ? '#a2c159' : '#a25660' }" class="login-msg">
     {{ loginMsg }}
@@ -26,5 +27,6 @@
       to see your shopping-cart </ng-template>
     <a routerLink="/validate">Go to Order Form</a>
     <div *ngIf="auth" style="color: crimson;text-align: right;float: right;">Total: {{totalPrice}}$</div>
+
   </div>
 </div>

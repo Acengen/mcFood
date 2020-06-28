@@ -11,7 +11,6 @@ import { FakeAuth } from '../Auth/FakeAuth.service';
 export class ProductsComponent implements OnInit {
   products: Product[];
   totalPrice: number;
-
   selectedProduct: Product;
   loginMsg: string;
   auth: boolean;
@@ -66,5 +65,11 @@ export class ProductsComponent implements OnInit {
 
   login() {
     this.fakeAuth.login();
+  }
+  helperClass(auth: boolean) {
+    return {
+      "text-danger": !auth,
+      "text-muted": auth
+    }
   }
 }

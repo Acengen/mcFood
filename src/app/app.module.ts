@@ -21,6 +21,7 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { BoughtProductsComponent } from './products/bought-products/bought-products.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -33,7 +34,6 @@ const appRoutes: Routes = [
     component: ProductsComponent,
     children: [
       { path: '', component: StartComponentComponent },
-
       { path: ':id', component: ProductDetailComponent },
       { path: ':id/edit', component: ProductEditComponent },
     ],
