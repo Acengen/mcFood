@@ -2,6 +2,7 @@ import { Product } from '../Models/product.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../Models/shopping.model';
 import { ShoppingService } from './shopping.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ProductService {
@@ -9,8 +10,6 @@ export class ProductService {
   productChanged = new EventEmitter<Product[]>();
   productToBuyEmitter = new EventEmitter<Product[]>();
   productTotalPriceEmitter = new EventEmitter<number>();
-
-
   total = 0;
 
   private buyProduct: Product[] = [];
@@ -44,7 +43,10 @@ export class ProductService {
       3
     ),
   ];
-  constructor(private shoppingService: ShoppingService) { }
+  constructor(
+    private shoppingService: ShoppingService,
+    private http: HttpClient
+  ) {}
 
   getProducts() {
     return this.products.slice();
@@ -54,19 +56,18 @@ export class ProductService {
   }
 
   getBuyProduc() {
-    return this.buyProduct.slice()
+    return this.buyProduct.slice();
   }
 
   buyProductOnClick(newProduct: Product) {
     this.buyProduct.push(newProduct);
     this.total += newProduct.price;
-    this.productTotalPriceEmitter.emit(this.total)
+    this.productTotalPriceEmitter.emit(this.total);
     this.productToBuyEmitter.emit(this.buyProduct);
   }
 
   onProductSelected(product: Product) {
     this.productSelected.emit(product);
-
   }
 
   passIngredientToShoppingList(Ingredient: Ingredient[]) {
@@ -75,19 +76,18 @@ export class ProductService {
 
   updateProduct(index: number, newProduct: Product) {
     this.products[index] = newProduct;
-    this.productChanged.emit(this.products.slice())
+    this.productChanged.emit(this.products.slice());
   }
 
   deletingBurger(index: number, delProduct: Product) {
     this.buyProduct.splice(index, 1);
     this.total -= delProduct.price;
     this.productTotalPriceEmitter.emit(this.total);
-    this.productToBuyEmitter.emit(this.buyProduct)
+    this.productToBuyEmitter.emit(this.buyProduct);
   }
 
   deleteProductFromOrderForm(index: number) {
     this.buyProduct.splice(index, 1);
     this.productToBuyEmitter.emit(this.buyProduct);
   }
-
 }

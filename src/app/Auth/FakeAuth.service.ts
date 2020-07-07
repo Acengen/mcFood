@@ -3,7 +3,6 @@ import { EventEmitter } from '@angular/core';
 export class FakeAuth {
   auth = false;
   loginMsg = '';
-
   loginEmitter = new EventEmitter<string>();
   setTimeoutEmitter = new EventEmitter<string>();
   logoutEmitter = new EventEmitter<boolean>();
@@ -35,6 +34,5 @@ export class FakeAuth {
     }, 2000);
     this.loginEmitter.emit(this.loginMsg);
     this.authEmitter.emit(this.auth);
-
   }
 }

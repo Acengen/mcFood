@@ -10,7 +10,7 @@ import { FakeAuth } from './FakeAuth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private fakeAuth: FakeAuth, private route: Router) {}
+  constructor(private fakeAuth: FakeAuth, private route: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

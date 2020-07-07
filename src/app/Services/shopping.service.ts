@@ -1,10 +1,14 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../Models/shopping.model';
+import { HttpClient } from '@angular/common/http';
 
+@Injectable()
 export class ShoppingService {
   ingChange = new EventEmitter<Ingredient[]>();
   editing = new EventEmitter<number>();
   private ingredients: Ingredient[] = [];
+
+  constructor(private http: HttpClient) {}
 
   getIngredient() {
     return this.ingredients.slice();
@@ -14,8 +18,8 @@ export class ShoppingService {
     return this.ingredients[index];
   }
 
-  addIng(Ingredient: Ingredient) {
-    this.ingredients.push(Ingredient);
+  addIng(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
     this.ingChange.emit(this.ingredients.slice());
   }
   updateIng(index: number, addedIngredient: Ingredient) {
